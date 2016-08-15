@@ -1,0 +1,67 @@
+<div class="jumbotron">
+
+  <h1><span class="nowrap">Twitch TV</span></h1>
+  <p class="lead">
+    <!-- <img src="http://vignette3.wikia.nocookie.net/littlestpetshop-the-show/images/a/a1/Zoe_trent_bollywood_by_asimplerarity-d5twa1p.jpg/revision/latest?cb=20130212070655" alt="I'm Yeoman"><br> -->
+  </p>
+  <p class="full-width">
+    <a class="btn btn-lg btn-primary" ng-href="#/" ng-click="showAll=true; showOnline=false; showOffline=false; callRestService()">all</a>
+    <a class="btn btn-lg btn-success" ng-href="#/" ng-click="showAll=false; showOnline=true; showOffline=false; callRestService()">online</a>
+    <a class="btn btn-lg btn-warning" ng-href="#/" ng-click="showAll=false; showOnline=false; showOffline=true; callRestService()">offline</a>
+  </p>
+
+  <div><input class="search-bar" type="search" placeholder="Search..." ng-model="searchTerm"></div>
+
+</div>
+
+
+<div ng-cloak>
+
+  <!-- <div ng-if="online.length > 0"> -->
+  <div>
+
+    <!-- <h3 ng-cloak>There are {{online.length}} online channels.</h3> -->
+    <!-- <h3>These are the online channels:</h3> -->
+    <div class="row" ng-show="showAll" class="container-fluid text-center">
+      <div ng-repeat="item in (filtered1 = (all | filter: searchTerm))">
+        <p class="full-width">
+          <img class="logo" src="{{item[3]}}" alt="">
+          <a ng-if="item[2] === 'Online'" class="alert alert-success" role="alert" target="_blank" href="{{item[1]}}">{{item[0]}}</a>
+          <a ng-if="item[2] === 'Offline'" class="alert alert-danger" role="alert" target="_blank" href="{{item[1]}}">{{item[0]}}</a>
+          <a ng-if="item[2] === 'Disabled'" class="alert alert-danger" role="alert" target="_blank" href="{{item[1]}}">{{item[0]}}</a>
+        </p>
+      </div>
+      <!-- <table>
+        <tr ng-repeat="item in (filtered1 = (all | filter: searchTerm))">
+          <td></td>
+          <td><a ng-if="item[2] === 'Online'" class="alert alert-success" role="alert" target="_blank" href="{{item[1]}}">{{item[0]}}</a></td>
+          <td><a ng-if="item[2] === 'Offline'" class="alert alert-danger" role="alert" target="_blank" href="{{item[1]}}">{{item[0]}}</a></td>
+          <td><a ng-if="item[2] === 'Disabled'" class="alert alert-danger" role="alert" target="_blank" href="{{item[1]}}">{{item[0]}}</a></td>
+        </tr>
+      </table> -->
+      <p ng-if="filtered1.length == 0"><strong>No results found...</strong></p>
+    </div>
+
+    <div ng-show="showOnline">
+      <table>
+        <tr ng-repeat="item in (filtered2 = (online | filter: searchTerm))">
+          <td><a class="btn btn-sm btn-success" target="_blank" href="{{item[1]}}">{{item[0]}}</a></td>
+          <td><button type="button" class="btn btn-sm btn-default full-width"><i>{{item[2]}}</i></button></td>
+        </tr>
+      </table>
+      <p ng-if="filtered2.length == 0"><strong>No results found...</strong></p>
+    </div>
+
+    <div ng-show="showOffline">
+      <table>
+        <tr ng-repeat="item in (filtered3 = (offline | filter: searchTerm))">
+          <td><a class="btn btn-sm btn-warning" target="_blank" href="{{item[1]}}">{{item[0]}}</a></td>
+          <td><button type="button" class="btn btn-sm btn-default full-width"><i>{{item[2]}}</i></button></td>
+        </tr>
+      </table>
+      <p ng-if="filtered3.length == 0"><strong>No results found...</strong></p>
+    </div>
+
+  </div>
+
+</div>

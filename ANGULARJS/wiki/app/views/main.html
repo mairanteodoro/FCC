@@ -1,0 +1,62 @@
+<div class="text-center" ng-controller="MainCtrl">
+  <h1>Wiki Search</h1>
+
+  <!-- <md-input-container> -->
+    <input type="text"
+      placeholder="Enter search term here"
+      ng-keyup="$event.keyCode === 13 && callRestService()"
+      ng-model="searchTerm"
+      ng-init="searchTerm=''">
+  <!-- </md-input-container> -->
+
+  <br>
+
+  <button type="button" class="btn btn-success btn-sm" ng-click="callRestService()">
+    <span style="font-size:1.5em;" class="glyphicon glyphicon-search"></span>
+  </button>
+
+  <button type="button" class="btn btn-primary btn-sm" ng-click="callRandomPage()">
+    <span style="font-size:1.5em;" class="glyphicon glyphicon-question-sign"></span>
+    <!-- <a href="https://en.wikipedia.org/wiki/Special:Random" class="btn"></a> -->
+  </button>
+
+  <br>
+  <br>
+
+  <!-- Even when no results have been found, the object still have 2 keys -->
+  <div>
+    <div layout layout-wrap>
+      <div flex="50" flex-sm="100" flex-xs="100" ng-repeat="item in results.query.pages" class="container">
+        <md-card flex>
+
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline"><a href={{"http://en.wikipedia.org/?curid="+item.pageid}}>{{item.title}}</a></span>
+            </md-card-title-text>
+          </md-card-title>
+
+          <md-card-content>
+            <md-divider></md-divider>
+            <br>
+            <span class="md-subhead"><em>"{{item.extract}}"</em></span>
+          </md-card-content>
+
+        </md-card>
+      </div>
+    </div>
+
+    <div ng-if="foundPages === false && oldSearchTerm.length !== 0">
+      <div class="alert alert-danger" role="alert">
+        <span style="font-size:2em;" class="glyphicon glyphicon-thumbs-down"></span>
+        <h3>Oops... no entries found for "{{oldSearchTerm}}".</h3>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- <pre>
+    foundPages = {{foundPages}}
+    searchTerm.length = {{searchTerm.length}}
+  </pre> -->
+
+</div>

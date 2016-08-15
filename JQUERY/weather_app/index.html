@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather App using jQuery</title>
+
+  <!-- Bootstrap CSS (Latest compiled and minified) -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/main.css">
+  <!-- <link rel="stylesheet" href="./css/owfont-regular.css"> -->
+  <link rel="stylesheet" href="./css/weather-icons.css">
+
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+  <script src="./js/main.js"></script>
+
+  <!-- icon map -->
+  <script type="application/json" src="./content/iconMap.json"></script>
+
+</head>
+<body id="bodyBackgroundColor">
+
+  <div id="selBackground" class="jumbotron text-center">
+    <h1>Weather</h1>
+      <div class="row">
+        <div class="col-xs-6 col-xs-offset-3">
+          <h2 id="city"></h2>
+          <i id="icon"></i>
+          <p id="temp"></p>
+          <p id="tempMin"></p>
+          <p id="tempMax"></p>
+        </div>
+      <div class="row">
+      <label id="toggleModeButton" class="col-xs-2 col-xs-offset-5 btn btn-primary">&deg;C/&deg;F</label>
+      </div>
+
+      <!-- <div ng-if="data.Response === True">
+        <a href="#" class="">Everything seems OK.</a>
+      </div> -->
+    </div>
+  </div>
+
+</body>
+</html>

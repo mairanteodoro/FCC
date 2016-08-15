@@ -1,0 +1,48 @@
+<div class="text-center" ng-controller="MainCtrl">
+  <h1>Wiki Search</h1>
+
+  <input type="text" placeholder="Enter search term here" ng-keyup="$event.keyCode === 13 && callRestService()" ng-model="searchTerm">
+
+  <button type="button" class="btn btn-success btn-sm" ng-click="callRestService()">
+    <span class="glyphicon glyphicon-search"></span>
+  </button>
+
+  <!-- <md-button>Search</md-button> -->
+
+  <br>
+  <br>
+
+  <!-- Even when no results have been found, the object still have 2 keys -->
+  <div ng-if="hits > 2">
+    <div layout layout-wrap layout-sm="column" layout-xs="column" style="min-height:100vh">
+      <div flex="50" flex-sm="100" flex-xs="100" ng-repeat="item in results.query.pages" class="container">
+        <md-card flex >
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline"><a href={{"http://en.wikipedia.org/?curid="+item.pageid}}>{{item.title}}</a></span>
+            </md-card-title-text>
+          </md-card-title>
+          <!-- <md-card-title-media>
+            <div class="md-media-lg"><img src="{{item.thumbnail.source}}" alt="" /></div>
+          </md-card-title-media> -->
+          <md-card-content>
+            <md-divider></md-divider>
+            <br>
+            <span class="md-subhead"><em>"{{item.extract}}"</em></span>
+          </md-card-content>
+        </md-card>
+      </div>
+    </div>
+  </div>
+<!-- Even when no results have been found, the object still have 2 keys -->
+  <div ng-if="hits === 2">
+    <p>
+      No results found for "{{searchTerm}}".
+    </p>
+  </div>
+
+  <!-- <pre>
+    {{hits}}
+  </pre> -->
+
+</div>
