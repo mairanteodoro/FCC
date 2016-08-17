@@ -4,9 +4,9 @@ import { AppComponent, environment } from './app/';
 import { disableDeprecatedForms, provideForms } from '@angular/forms';
 import { HTTP_PROVIDERS } from '@angular/http';
 
-// if (environment.production) {
+if (environment.production) {
 enableProdMode();
-// }
+}
 
 bootstrap(AppComponent, [
   disableDeprecatedForms(),
