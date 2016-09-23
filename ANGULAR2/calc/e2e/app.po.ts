@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor/globals';
 
-export class JscalcPage {
+export class CalcPage {
   navigateTo() {
     return browser.get('/');
   }

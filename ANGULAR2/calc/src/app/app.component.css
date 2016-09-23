@@ -1,0 +1,41 @@
+.container {
+  position: relative;
+  width: 400px;
+  height: 500px;
+  text-align: center;
+}
+
+.digits-panel {
+  position: absolute;
+  bottom: 0;
+  width: 300px;
+  height: 300px;
+}
+
+.digits-button {
+  width: 33%;
+  height: 25%;
+  background-color: gray;
+  border-radius: 5px;
+}
+
+.display-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: 100px;
+  background-color: black;
+  border-radius: 5px;
+}
+
+.math-operations-panel {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 300px;
+  width: 100px;
+  background-color: orange;
+  border-radius: 5px;
+}

@@ -1,10 +1,10 @@
-import { JscalcPage } from './app.po';
+import { CalcPage } from './app.po';
 
-describe('jscalc App', function() {
-  let page: JscalcPage;
+describe('calc App', function() {
+  let page: CalcPage;
 
   beforeEach(() => {
-    page = new JscalcPage();
+    page = new CalcPage();
   });
 
   it('should display message saying app works', () => {
