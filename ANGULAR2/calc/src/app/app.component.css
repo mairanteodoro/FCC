@@ -1,22 +1,45 @@
+* {
+  color: black;
+  font-size: 2rem;
+}
+
 .container {
   position: relative;
   width: 400px;
-  height: 500px;
-  text-align: center;
+  height: 600px;
 }
 
-.digits-panel {
+.red-circle {
   position: absolute;
-  bottom: 0;
-  width: 300px;
-  height: 300px;
+  top: 5px;
+  left: 5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #FC5651;
+  z-index: 1;
 }
 
-.digits-button {
-  width: 33%;
-  height: 25%;
-  background-color: gray;
-  border-radius: 5px;
+.yellow-circle {
+  position: absolute;
+  top: 5px;
+  left: 30px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #FDBB3F;
+  z-index: 1;
+}
+
+.green-circle {
+  position: absolute;
+  top: 5px;
+  left: 55px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #33C647;
+  z-index: 1;
 }
 
 .display-panel {
@@ -26,16 +49,79 @@
   right: 0;
   width: auto;
   height: 100px;
-  background-color: black;
-  border-radius: 5px;
+  background-color: #4C4C4C;
+  border-radius: 0px;
 }
 
-.math-operations-panel {
+.digits-panel {
+  position: absolute;
+  bottom: 0;
+  width: 300px;
+  height: 400px;
+}
+
+.digits-button {
+  width: 100px;
+  height: 100px;
+  background-color: lightgray;
+  border-radius: 0px;
+  border: 1px solid black;
+}
+
+.digits-button-double {
+  width: 200px;
+  height: 100px;
+  background-color: lightgray;
+  border-radius: 0px;
+  border: 1px solid black;
+}
+
+.math-ops-panel {
   position: absolute;
   right: 0;
   bottom: 0;
-  height: 300px;
+  height: 500px;
   width: 100px;
-  background-color: orange;
   border-radius: 5px;
+}
+
+.math-ops-button {
+  color: white!important;
+  width: 100px;
+  height: 100px;
+  background-color: orange;
+  border-radius: 0px;
+  border: 1px solid black;
+}
+
+.misc-panel {
+  position: absolute;
+  left: 0;
+  top: 100px;
+  width: 300px;
+  height: 100px;
+}
+
+.misc-ops-button {
+  width: 100px;
+  height: 100px;
+  background-color: lightgray;
+  border-radius: 0px;
+  border: 1px solid black;
+}
+
+.decimal-point {
+  position: absolute;
+  left: 200px;
+  bottom: 0;
+  width: 100px;
+  height: 100px;
+}
+
+.decimal-point-button {
+  width: 100px;
+  height: 100px;
+  background-color: lightgray;
+  border-radius: 0px;
+  border: 1px solid black;
 }

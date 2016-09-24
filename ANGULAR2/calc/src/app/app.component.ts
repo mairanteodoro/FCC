@@ -7,6 +7,10 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'app works!';
-  buttons:Array<any> = [1,2,3,4,5,6,7,8,9,0];
+
+  buttons:number[] = [7,8,9,4,5,6,1,2,3,0];
+  mathOps:string[] = ['/','x','-','+','='];
+  misc:string[] = ['AC','+/-','%'];
+  decimalPoint:string = '.';
+
 }

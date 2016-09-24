@@ -1,13 +1,36 @@
 <div class="container">
 
+  <div class="display-panel"></div>
+
+  <div class="red-circle"></div>
+  <div class="yellow-circle"></div>
+  <div class="green-circle"></div>
+
+  <div class="misc-panel">
+    <button class="misc-ops-button" type="button" *ngFor="let item of misc">
+      {{item}}
+    </button>
+  </div>
+
   <div class="digits-panel">
-    <button class="digits-button" type="button" name="button" *ngFor="let button of buttons">
+    <button class="digits-button" type="button" *ngFor="let button of buttons | slice:0:9">
+      {{button}}
+    </button>
+    <button class="digits-button-double" type="button" *ngFor="let button of buttons | slice:9:10">
       {{button}}
     </button>
   </div>
 
-  <div class="display-panel"></div>
+  <div class="math-ops-panel">
+    <button class="math-ops-button" type="button" *ngFor="let mathOp of mathOps">
+      {{mathOp}}
+    </button>
+  </div>
 
-  <div class="math-operations-panel"></div>
+  <div class="decimal-point">
+    <button class="decimal-point-button" type="button">
+      {{decimalPoint}}
+    </button>
+  </div>
 
 </div>
