@@ -1,34 +1,38 @@
 <div class="container">
 
-  <div class="display-panel"></div>
+  <div class="display-panel">
+    <div class="display-result">
+      <span>{{displayed}}</span>
+    </div>
+  </div>
 
   <div class="red-circle"></div>
   <div class="yellow-circle"></div>
   <div class="green-circle"></div>
 
   <div class="misc-panel">
-    <button class="misc-ops-button" type="button" *ngFor="let item of misc">
+    <button class="misc-ops-button" type="button" *ngFor="let item of misc" (click)="onClicked($event)">
       {{item}}
     </button>
   </div>
 
   <div class="digits-panel">
-    <button class="digits-button" type="button" *ngFor="let button of buttons | slice:0:9">
+    <button class="digits-button" type="button" *ngFor="let button of buttons | slice:0:9" (click)="onClicked($event)">
       {{button}}
     </button>
-    <button class="digits-button-double" type="button" *ngFor="let button of buttons | slice:9:10">
+    <button class="digits-button-double" type="button" *ngFor="let button of buttons | slice:9:10" (click)="onClicked($event)">
       {{button}}
     </button>
   </div>
 
   <div class="math-ops-panel">
-    <button class="math-ops-button" type="button" *ngFor="let mathOp of mathOps">
+    <button class="math-ops-button" type="button" *ngFor="let mathOp of mathOps" (click)="onClicked($event)">
       {{mathOp}}
     </button>
   </div>
 
   <div class="decimal-point">
-    <button class="decimal-point-button" type="button">
+    <button class="decimal-point-button" type="button" (click)="onClicked($event)">
       {{decimalPoint}}
     </button>
   </div>

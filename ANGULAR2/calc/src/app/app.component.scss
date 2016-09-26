@@ -1,3 +1,23 @@
+// following the idea:
+// -> pixel at the root;
+// -> rem for components;
+// -> em for text elements;
+$my-font-size: 32px;
+
+// to be used by transformY()
+// when a button is pressed
+$scale: 0.9;
+
+// mixin for border-radius vendor
+$radius: 0px;
+@mixin my-border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+// remove outline of active buttons
 button:focus {
   outline: 0;
 }
@@ -7,10 +27,10 @@ button:focus {
   left: 500px;
   width: 400px;
   height: 600px;
-  font-size: 32px;
+  font-size: $my-font-size;
   -webkit-box-shadow: 10px 10px 6px #ccc;
-  -moz-box-shadow: 10px 10px 6px #ccc;
-  box-shadow: 10px 10px 6px #ccc;
+     -moz-box-shadow: 10px 10px 6px #ccc;
+          box-shadow: 10px 10px 6px #ccc;
 }
 
 .red-circle {
@@ -54,10 +74,7 @@ button:focus {
   width: auto;
   height: 100px;
   background-color: #4C4C4C;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  border-radius: 0px;
+  @include my-border-radius($radius);
 }
 
 .display-result {
@@ -79,15 +96,12 @@ button:focus {
   width: 100px;
   height: 100px;
   background-color: lightgray;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  border-radius: 0px;
+  @include my-border-radius($radius);
   border: 1px solid black;
   font-size: 1em;
 }
-
-.digits-button:active, .digits-button-double:active, .math-ops-button:active, .misc-ops-button:active, .decimal-point-button:active {
+.digits-button:active {
+  // transform: scale($scale);
   background-color: gray;
 }
 
@@ -95,12 +109,12 @@ button:focus {
   width: 200px;
   height: 100px;
   background-color: lightgray;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  border-radius: 0px;
+  @include my-border-radius($radius);
   border: 1px solid black;
   font-size: 1em;
+}
+.digits-button-double:active {
+  @extend .digits-button:active;
 }
 
 .math-ops-panel {
@@ -113,16 +127,16 @@ button:focus {
 }
 
 .math-ops-button {
-  color: white !important;
+  color: white!important;
   width: 100px;
   height: 100px;
   background-color: orange;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  border-radius: 0px;
+  @include my-border-radius($radius);
   border: 1px solid black;
   font-size: 1.5em;
+}
+.math-ops-button:active {
+  @extend .digits-button:active;
 }
 
 .misc-panel {
@@ -137,12 +151,12 @@ button:focus {
   width: 100px;
   height: 100px;
   background-color: lightgray;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  border-radius: 0px;
+  @include my-border-radius($radius);
   border: 1px solid black;
   font-size: 1em;
+}
+.misc-ops-button:active {
+  @extend .digits-button:active;
 }
 
 .decimal-point {
@@ -158,10 +172,10 @@ button:focus {
   width: 100px;
   height: 100px;
   background-color: lightgray;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  border-radius: 0px;
+  @include my-border-radius($radius);
   border: 1px solid black;
   font-size: 1em;
+}
+.decimal-point-button:active {
+  @extend .digits-button:active;
 }
