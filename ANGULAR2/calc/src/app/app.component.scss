@@ -28,6 +28,8 @@ button:focus {
   width: 400px;
   height: 600px;
   font-size: $my-font-size;
+  @include my-border-radius(5px);
+  overflow: hidden;
   -webkit-box-shadow: 10px 10px 6px #ccc;
      -moz-box-shadow: 10px 10px 6px #ccc;
           box-shadow: 10px 10px 6px #ccc;
@@ -83,6 +85,8 @@ button:focus {
   bottom: 0;
   color: white;
   font-size: 2em;
+  font-family: Helvetica;
+  font-weight: 100;
 }
 
 .digits-panel {

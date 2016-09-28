@@ -8,122 +8,80 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
 
-  // variable declarations
+  // constant declarations
   buttons:number[] = [7,8,9,4,5,6,1,2,3,0];
-  mathOps:string[] = [String.fromCharCode(247),'x','-','+','='];
-  misc:string[] = ['AC','+/-','%'];
-  decimalPoint:string = '.';
-  displayed:string = '0';
-  result:number = 0;
-  num1:number = 0;
-  op:string;
-  counter:boolean = false;
+  mathOps:string[] = [String.fromCharCode(247),"x","-","+","="];
+  misc:string[] = ["AC","+/-","%"];
+  decimalPoint:string = ".";
 
-  clearAll() {
-    this.displayed = '0';
-    this.result = 0;
-    this.num1 = 0;
-    this.counter = false;
-  }
+  // variable declarations
+  displayed:string = "0";
+  mathOp:string;
+  subTotal:number = 0;
+  total:any[] = [];
 
   onClicked(event) {
-    if (this.counter) { this.clearAll(); }
+    console.log(event.target.textContent.trim());
+    const pressedKey = event.target.textContent.trim();
 
-    const temp = event.target.textContent.trim()
-    if (Number(temp) || Number(temp)===0) {
-
-      console.log("it's a number!");
-      // prevents from starting with zero (unless is a number < 0 e.g. 0.1, 0.001)
-      if (this.displayed.indexOf('0')===0 && (this.displayed.indexOf('.')!==1)) {this.displayed = this.displayed.slice(1)}
-      this.displayed = this.displayed + temp;
-      this.result = Number(this.displayed);
-
+    if (Number(pressedKey) || Number(pressedKey)===0) {
+      // pressed key is a number
+      // the first part of the r.h.s. in the equation below
+      // tests for zeros at the begining;
+      // if any found, remove it and concatenate to previous string
+      this.displayed = (this.displayed.indexOf("0")===0 ? this.displayed.slice(1) : this.displayed) + pressedKey;
     } else {
-
-      console.log("it's not a number!");
-
-      if (temp==='AC') {
-        console.log("clear the display!");
-        this.displayed = '0';
-        this.result = 0;
-      }
-      if (temp==='+/-') {
-        console.log("change the sign!");
-        this.displayed = (this.displayed.indexOf('-')===-1) ? '-' + this.displayed : this.displayed.replace('-', '');
-        this.result = Number(this.displayed);
-      }
-      if (temp==='.') {
-        console.log("add a decimal point!");
-        // prevents from adding more than 1 decimal point
-        this.displayed = (this.displayed.indexOf('.')===-1) ? this.displayed + '.' : this.displayed;
-        this.result = Number(this.displayed);
-      }
-
-      // mathOps
-      if (temp==='+') {
-        console.log("mathOp: addition!")
-        this.num1 = this.result;
-        this.op = temp;
-        this.displayed = '0';
-        this.result = 0;
-      }
-      if (temp==='-') {
-        console.log("mathOp: subtraction!")
-        this.num1 = this.result;
-        this.op = temp;
-        this.displayed = '0';
-        this.result = 0;
-      }
-      if (temp==='x') {
-        console.log("mathOp: multiplication!")
-        this.num1 = this.result;
-        this.op = temp;
-        this.displayed = '0';
-        this.result = 0;
-      }
-      if (temp==='÷') {
-        console.log("mathOp: division!")
-        this.num1 = this.result;
-        this.op = temp;
-        this.displayed = '0';
-        this.result = 0;
-      }
-      if (temp==='%') {
-        console.log("mathOp: percentage!")
-        if (this.op==='+') {
-          this.displayed = String(this.num1 * (1 + this.result / 100));
-        }
-        if (this.op==='-') {
-          this.displayed = String(this.num1 * (1 - this.result / 100));
-        }
-        if (this.op==='x') {
-          this.displayed = String(this.num1 * (this.num1 * this.result / 100));
-        }
-        if (this.op==='÷') {
-          this.displayed = String(this.num1 * (this.num1 / (this.result / 100)));
+      // pressed key is not a number
+      if (pressedKey==='+' || pressedKey==='-' || pressedKey==='x' || pressedKey==='÷') {
+        // pressed key is a mathematical operation;
+        // therefore, save the number being displayed
+        // and the operation
+        this.total.push(Number(this.displayed), pressedKey);
+        this.saveDisplayed(this.displayed, pressedKey);
+        // and reset the displayed value
+        this.displayed = "0";
+      } else {
+        // pressed key is a miscellany (AC, +/-, %, or =)
+        if (pressedKey==="AC") {this.clearAll()};
+        if (pressedKey==='=') {
+          // push last displayed value and print the results
+          this.total.push(Number(this.displayed));
+          this.saveDisplayed(this.displayed, pressedKey);
+        } else {
+          console.log("MISCELLANY");
         }
       }
-
-      // print result
-      if (temp==='=') {
-        console.log("print the result!")
-        if (this.op==='+') {
-          this.displayed = String(this.num1 + this.result);
-        }
-        if (this.op==='-') {
-          this.displayed = String(this.num1 - this.result);
-        }
-        if (this.op==='x') {
-          this.displayed = String(this.num1 * this.result);
-        }
-        if (this.op==='÷') {
-          this.displayed = String(this.num1 / this.result);
-        }
-        // set counter to true so everything can be cleared
-        this.counter = true;
-      }
-
     }
+  }
+
+  saveDisplayed(displayed, operation) {
+    if (this.total.length>3 || operation==="=") {
+      console.log("this.total.length>2");
+      if (this.total[1]==="+") {
+        this.subTotal = this.total[0] + this.total[2];
+        console.log('this.subTotal:', this.subTotal);
+      };
+      if (this.total[1]==="-") {
+        this.subTotal = this.total[0] - this.total[2];
+        console.log('this.subTotal:', this.subTotal);
+      };
+      if (this.total[1]==="x") {
+        this.subTotal = this.total[0] * this.total[2];
+        console.log('this.subTotal:', this.subTotal);
+      };
+      if (this.total[1]==="÷") {
+        this.subTotal = this.total[0] / this.total[2];
+        console.log('this.subTotal:', this.subTotal);
+      };
+      this.total = [this.subTotal, operation];
+      this.displayed = String(this.subTotal);
+    }
+  }
+
+  clearAll() {
+    this.displayed = "0"
+    this.total = [];
+    this.subTotal = 0;
   }
 
 }
