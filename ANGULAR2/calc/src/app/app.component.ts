@@ -21,8 +21,16 @@ export class AppComponent {
   total:any[] = [];
 
   onClicked(event) {
+
     console.log(event.target.textContent.trim());
+    // get the value of pressed button
     const pressedKey = event.target.textContent.trim();
+    // call main method
+    this.main(pressedKey);
+
+  }
+
+  main(pressedKey) {
 
     if (Number(pressedKey) || Number(pressedKey)===0) {
       // pressed key is a number
@@ -34,15 +42,31 @@ export class AppComponent {
       // pressed key is not a number
       if (pressedKey==='+' || pressedKey==='-' || pressedKey==='x' || pressedKey==='÷') {
         // pressed key is a mathematical operation;
-        // therefore, save the number being displayed
-        // and the operation
+        // therefore, save the string being displayed
+        // and the chosen operation
         this.total.push(Number(this.displayed), pressedKey);
         this.saveDisplayed(this.displayed, pressedKey);
         // and reset the displayed value
         this.displayed = "0";
       } else {
         // pressed key is a miscellany (AC, +/-, %, or =)
-        if (pressedKey==="AC") {this.clearAll()};
+        if (pressedKey==="AC") {
+          // reset all variables
+          this.clearAll();
+        }
+        if (pressedKey==="+/-") {
+          // change sign
+          this.displayed = this.displayed.indexOf("-")===0 ? this.displayed.replace("-", "") : "-" + this.displayed;
+        }
+        if (pressedKey===".") {
+          // add decimal point
+          this.displayed = this.displayed.indexOf(".")===-1 ? this.displayed + "." : this.displayed;
+        }
+        if (pressedKey==="%") {
+          // percentage
+          console.log("pressedKey===%", this.subTotal, this.displayed);
+          this.displayed = String(this.percent(this.subTotal, this.displayed));
+        }
         if (pressedKey==='=') {
           // push last displayed value and print the results
           this.total.push(Number(this.displayed));
@@ -52,36 +76,44 @@ export class AppComponent {
         }
       }
     }
+
   }
 
   saveDisplayed(displayed, operation) {
+
     if (this.total.length>3 || operation==="=") {
-      console.log("this.total.length>2");
       if (this.total[1]==="+") {
         this.subTotal = this.total[0] + this.total[2];
-        console.log('this.subTotal:', this.subTotal);
       };
       if (this.total[1]==="-") {
         this.subTotal = this.total[0] - this.total[2];
-        console.log('this.subTotal:', this.subTotal);
-      };
+      }
       if (this.total[1]==="x") {
         this.subTotal = this.total[0] * this.total[2];
-        console.log('this.subTotal:', this.subTotal);
-      };
+      }
       if (this.total[1]==="÷") {
         this.subTotal = this.total[0] / this.total[2];
-        console.log('this.subTotal:', this.subTotal);
-      };
+      }
       this.total = [this.subTotal, operation];
       this.displayed = String(this.subTotal);
     }
+
+  }
+
+  percent(total, percentage) {
+
+    console.log("percent:", total * (1.0 + percentage / 100.0));
+    return total * (1.0 + percentage / 100.0);
+
   }
 
   clearAll() {
+
     this.displayed = "0"
     this.total = [];
     this.subTotal = 0;
+    this.mathOp = "";
+
   }
 
 }
