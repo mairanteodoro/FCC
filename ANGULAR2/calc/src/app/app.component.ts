@@ -22,7 +22,6 @@ export class AppComponent {
 
   onClicked(event) {
 
-    console.log(event.target.textContent.trim());
     // get the value of pressed button
     const pressedKey = event.target.textContent.trim();
     // call main method
@@ -46,6 +45,7 @@ export class AppComponent {
         // and the chosen operation
         this.total.push(Number(this.displayed), pressedKey);
         this.saveDisplayed(this.displayed, pressedKey);
+        this.subTotal = Number(this.displayed);
         // and reset the displayed value
         this.displayed = "0";
       } else {
@@ -64,15 +64,12 @@ export class AppComponent {
         }
         if (pressedKey==="%") {
           // percentage
-          console.log("pressedKey===%", this.subTotal, this.displayed);
-          this.displayed = String(this.percent(this.subTotal, this.displayed));
+          this.displayed = String(this.subTotal * Number(this.displayed) / 100.);
         }
         if (pressedKey==='=') {
           // push last displayed value and print the results
           this.total.push(Number(this.displayed));
           this.saveDisplayed(this.displayed, pressedKey);
-        } else {
-          console.log("MISCELLANY");
         }
       }
     }
@@ -84,7 +81,7 @@ export class AppComponent {
     if (this.total.length>3 || operation==="=") {
       if (this.total[1]==="+") {
         this.subTotal = this.total[0] + this.total[2];
-      };
+      }
       if (this.total[1]==="-") {
         this.subTotal = this.total[0] - this.total[2];
       }
@@ -97,13 +94,6 @@ export class AppComponent {
       this.total = [this.subTotal, operation];
       this.displayed = String(this.subTotal);
     }
-
-  }
-
-  percent(total, percentage) {
-
-    console.log("percent:", total * (1.0 + percentage / 100.0));
-    return total * (1.0 + percentage / 100.0);
 
   }
 

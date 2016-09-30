@@ -4,7 +4,8 @@ button:focus {
 
 .container {
   position: relative;
-  left: 500px;
+  display: block;
+  margin: 0 auto;
   width: 400px;
   height: 600px;
   font-size: 32px;
