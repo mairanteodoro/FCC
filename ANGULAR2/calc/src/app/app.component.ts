@@ -15,7 +15,7 @@ export class AppComponent {
   decimalPoint:string = ".";
 
   // variable declarations
-  displayed:string = "0";
+  display:string = "0";
   mathOp:string;
   subTotal:number = 0;
   total:any[] = [];
@@ -25,58 +25,65 @@ export class AppComponent {
     // get the value of pressed button
     const pressedKey = event.target.textContent.trim();
     // call main method
-    this.main(pressedKey);
+    this.display = this.main(pressedKey, this.display);
 
   }
 
-  main(pressedKey) {
+  main(pressedKey:any, displayed:string) {
 
     if (Number(pressedKey) || Number(pressedKey)===0) {
       // pressed key is a number
       // the first part of the r.h.s. in the equation below
       // tests for zeros at the begining;
       // if any found, remove it and concatenate to previous string
-      this.displayed = (this.displayed.indexOf("0")===0 ? this.displayed.slice(1) : this.displayed) + pressedKey;
+      displayed = ((displayed.indexOf("0")===0 && displayed.indexOf(".")===-1) ? displayed.slice(1) : displayed) + pressedKey;
     } else {
       // pressed key is not a number
       if (pressedKey==='+' || pressedKey==='-' || pressedKey==='x' || pressedKey==='÷') {
         // pressed key is a mathematical operation;
         // therefore, save the string being displayed
         // and the chosen operation
-        this.total.push(Number(this.displayed), pressedKey);
-        this.saveDisplayed(this.displayed, pressedKey);
-        this.subTotal = Number(this.displayed);
+        this.total.push(Number(displayed), pressedKey);
+        this.saveDisplayed(this.total[0], pressedKey);
+        this.subTotal = Number(this.total[0]);
         // and reset the displayed value
-        this.displayed = "0";
+        displayed = "0";
       } else {
         // pressed key is a miscellany (AC, +/-, %, or =)
         if (pressedKey==="AC") {
           // reset all variables
+          displayed = "0";
           this.clearAll();
         }
         if (pressedKey==="+/-") {
           // change sign
-          this.displayed = this.displayed.indexOf("-")===0 ? this.displayed.replace("-", "") : "-" + this.displayed;
+          displayed = displayed.indexOf("-")===0 ? displayed.replace("-", "") : "-" + displayed;
         }
         if (pressedKey===".") {
           // add decimal point
-          this.displayed = this.displayed.indexOf(".")===-1 ? this.displayed + "." : this.displayed;
+          displayed = displayed.indexOf(".")===-1 ? displayed + "." : displayed;
         }
         if (pressedKey==="%") {
           // percentage
-          this.displayed = String(this.subTotal * Number(this.displayed) / 100.);
+          displayed = String(this.subTotal * Number(displayed) / 100.);
         }
         if (pressedKey==='=') {
           // push last displayed value and print the results
-          this.total.push(Number(this.displayed));
-          this.saveDisplayed(this.displayed, pressedKey);
+          this.total.push(Number(displayed));
+          displayed = this.saveDisplayed(this.total[0], pressedKey);
+          if (displayed.length>11) {
+            // number too big to fit display area
+            displayed = "Too big..."
+          }
         }
       }
     }
 
+    return displayed;
+
   }
 
-  saveDisplayed(displayed, operation) {
+  saveDisplayed(displayed:string, operation:string) {
 
     if (this.total.length>3 || operation==="=") {
       if (this.total[1]==="+") {
@@ -91,15 +98,18 @@ export class AppComponent {
       if (this.total[1]==="÷") {
         this.subTotal = this.total[0] / this.total[2];
       }
+      // concatenate subtotal and the next operation
       this.total = [this.subTotal, operation];
-      this.displayed = String(this.subTotal);
+
+      return String(this.subTotal);
+
     }
 
   }
 
   clearAll() {
 
-    this.displayed = "0"
+    this.display = "0"
     this.total = [];
     this.subTotal = 0;
     this.mathOp = "";
