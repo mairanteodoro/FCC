@@ -46,6 +46,10 @@ export class AppComponent {
         this.total.push(Number(displayed), pressedKey);
         this.saveDisplayed(this.total[0], pressedKey);
         this.subTotal = Number(this.total[0]);
+<<<<<<< HEAD
+=======
+        console.log(this.total, displayed, this.subTotal);
+>>>>>>> d2714de23d1d165d8bbd5eefc3c52dbdbcbe339c
         // and reset the displayed value
         displayed = "0";
       } else {
@@ -66,6 +70,10 @@ export class AppComponent {
         if (pressedKey==="%") {
           // percentage
           displayed = String(this.subTotal * Number(displayed) / 100.);
+<<<<<<< HEAD
+=======
+          console.log(this.subTotal, displayed);
+>>>>>>> d2714de23d1d165d8bbd5eefc3c52dbdbcbe339c
         }
         if (pressedKey==='=') {
           // push last displayed value and print the results
@@ -74,6 +82,10 @@ export class AppComponent {
           if (displayed.length>11) {
             // number too big to fit display area
             displayed = "Too big..."
+<<<<<<< HEAD
+=======
+            console.log("RESULT = ", displayed, displayed.length);
+>>>>>>> d2714de23d1d165d8bbd5eefc3c52dbdbcbe339c
           }
         }
       }
