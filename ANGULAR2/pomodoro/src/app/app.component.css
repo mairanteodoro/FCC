@@ -1,15 +1,20 @@
-.container {
-  position: relative;
-  background-color: gray;
-}
-
 .dashboard {
-  display: block;
+  display: inline-block;
+  position: relative;
   margin: 0 auto;
   width: 400px;
   height: 400px;
-  border: 3px solid red;
+  border: 3px solid green;
   border-radius: 50%;
+}
+
+.dashboard > h1 {
+  font-size: 8em;
+  font-weight: 200;
+  text-align: center;
+  padding-top: 25%;
+  padding-bottom: 25%;
+  color: white;
 }
 
 .set-break {
@@ -18,11 +23,13 @@
   border: 1px solid black;
   width: 100px;
   height: 100px;
+  text-align: center;
 }
 
 .set-session {
   display: inline-block;
-  border: 1px solid white;
+  border: 1px solid orange;
   width: 100px;
   height: 100px;
+  text-align: center;
 }
