@@ -1,15 +1,50 @@
-<div class="container">
-
-  <div class="set-break">
-    <h5>break</h5>
-  </div>
+<div class="container center">
 
   <div class="dashboard z-depth-3 deep-orange darken-1">
-    <h1>25:00</h1>
+
+    <div class="controller">
+      <div class="set-break">
+        break
+      </div>
+      <div class="set-break increment">
+        <div class="increment">
+          <i class="small material-icons" (click)="decreaseBreak()">
+            keyboard_arrow_down
+          </i>
+        </div>
+        <div class="increment"> {{break}} </div>
+        <div class="increment">
+          <i class="small material-icons" (click)="increaseBreak()">
+            keyboard_arrow_up
+          </i>
+        </div>
+      </div>
+    </div>
+
+    <div class="display">
+      25:00
+    </div>
+
+    <div class="controller">
+      <div class="set-session increment">
+        <div class="increment">
+          <i class="small material-icons" (click)="decreaseSession()">
+            keyboard_arrow_down
+          </i>
+        </div>
+        <div class="increment"> {{session}} </div>
+        <div class="increment">
+          <i class="small material-icons" (click)="increaseSession()">
+            keyboard_arrow_up
+          </i>
+        </div>
+      </div>
+      <div class="set-session">
+        session
+      </div>
+    </div>
+
   </div>
 
-  <div class="set-session">
-    <h5>session</h5>
-  </div>
 
 </div>

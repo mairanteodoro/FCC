@@ -1,38 +1,54 @@
 // size of dashboard
-$size: 400px;
+$size: 300px;
+$controller-font-size: 20px;
+
+// .container {
+//   border: 1px solid black;
+// }
 
 .dashboard {
-  display: inline-block;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
   margin: 0 auto;
   width: $size;
   height: $size;
-  border: 3px solid green;
+  border: 10px solid green;
   border-radius: 50%;
+  min-width: 200px;
+  min-height: 200px;
 }
 
-.dashboard > h1 {
-  font-size: 8em;
+.display {
+  font-size: 64px;
   font-weight: 200;
-  text-align: center;
-  padding-top: 25%;
-  padding-bottom: 25%;
   color: white;
+  // border: 1px solid black;
+}
+
+.controller {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  font-weight: 200;
+}
+
+.increment {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  // border: 1px solid white;
 }
 
 .set-break {
-  display: inline-block;
-  position: relative;
-  border: 1px solid black;
-  width: 100px;
-  height: 100px;
-  text-align: center;
+  // border: 1px solid purple;
+  font-size: $controller-font-size;
 }
 
 .set-session {
-  display: inline-block;
-  border: 1px solid orange; 
-  width: 100px;
-  height: 100px;
-  text-align: center;
+  // border: 1px solid orange;
+  font-size: $controller-font-size;
 }
