@@ -52,3 +52,8 @@ $controller-font-size: 20px;
   // border: 1px solid orange;
   font-size: $controller-font-size;
 }
+
+.no-select {
+  outline-style: none; /* user cannot select item */
+  cursor: default; /* cursor does not turn into "selectable" cursor */
+}

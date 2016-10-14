@@ -40,3 +40,10 @@
 .set-session {
   font-size: 20px;
 }
+
+.no-select {
+  outline-style: none;
+  /* user cannot select item */
+  cursor: default;
+  /* cursor does not turn into "selectable" cursor */
+}
