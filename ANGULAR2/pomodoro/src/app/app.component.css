@@ -26,6 +26,14 @@
   font-weight: 200;
 }
 
+.controller-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  font-weight: 200;
+}
+
 .increment {
   display: flex;
   flex-direction: row;

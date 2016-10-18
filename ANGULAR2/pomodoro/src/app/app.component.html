@@ -22,7 +22,21 @@
     </div>
 
     <div class="display">
-      {{myTimer}}
+
+      25:00
+
+    </div>
+
+    <div class="controller-row">
+      <i class="no-select small material-icons" *ngIf="myStart" (click)="myPause=!myPause; myStart=!myStart; startSession()">
+        play_arrow
+      </i>
+      <i class="no-select small material-icons" *ngIf="myPause" (click)="myStart=!myStart; myPause=!myPause; pauseSession()">
+        pause
+      </i>
+      <i class="no-select small material-icons" (click)="stopSession()">
+        stop
+      </i>
     </div>
 
     <div class="controller">
