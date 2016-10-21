@@ -9,16 +9,19 @@ export class AppComponent implements OnInit {
 
   myBreak:number;
   mySession:number;
-  myTimer:any;
   myStart:boolean;
   myPause:boolean;
+  sessionTimer:any;
+  breakTimer:any;
+  timer:any;
 
   ngOnInit() {
     this.myBreak = 5;
     this.mySession = 25;
-    this.myTimer = this.mySession;
     this.myStart = true;
     this.myPause = false;
+    this.sessionTimer = this.mySession;
+    this.breakTimer = this.myBreak;
   };
 
   // METHODS
@@ -35,21 +38,29 @@ export class AppComponent implements OnInit {
   decreaseSession() {
     console.log("Decrease Session");
     this.mySession = this.mySession === 0 ? 0 : this.mySession - 1;
-    this.myTimer = this.mySession;
   };
 
   increaseSession() {
     console.log("Increase Session");
     this.mySession = this.mySession === 60 ? 25 : this.mySession + 1;
-    this.myTimer = this.mySession;
   };
 
   startSession() {
     console.log("Started session");
     // 'root' object is set *by reference* to the global 'this' object
     let root = this;
+    // creating a regular timer to clock the elapsed time
+    for (let i=0; i<=(4 * root.mySession + 3 * root.myBreak); i++) {
+      this.timer = setTimeout((function(x) {
+        return function() {
+          console.log("Timer: " + x.toString() + " s elapsed");
+        }
+      })(i), i * 1000);
+    }
+    // creating 4 pomodoro sessions
     for (let i=1; i<=4; i++) {
-      this.myTimer = setTimeout((function(x) {
+      // setting the session timeout
+      this.sessionTimer = setTimeout((function(x) {
         // immediately invoke the outer function with passed argument
         // and return a callback function that 'remembers' its execution context
         return function() {
@@ -64,10 +75,22 @@ export class AppComponent implements OnInit {
             // sound it off
             root.beep();
           } else {
+            console.log("root.mySession: ", i, root.mySession);
             console.log(" -> Session " + x.toString() + " finished.");
           };
         };
-      })(i), i * 5 * 1000);
+      })(i), i * root.mySession * 1000);
+      // setting the break timeout right after each session
+      if (i<=3) {
+        this.breakTimer = setTimeout((function(x) {
+          // immediately invoke the outer function with passed argument
+          // and return a callback function that 'remembers' its execution context
+          return function() {
+            console.log("root.myBreak: ", root.myBreak);
+            console.log(" -> Break from session " + x.toString() + " finished.");
+          };
+        })(i), i * root.mySession * 1000 + root.myBreak * 1000);
+      }
     };
   };
 
@@ -78,8 +101,11 @@ export class AppComponent implements OnInit {
   stopSession() {
     console.log("Stop Session");
     // stop all timers
-    while (this.myTimer--) {
-      clearTimeout(this.myTimer);
+    while (this.sessionTimer--) {
+      clearTimeout(this.sessionTimer);
+    }
+    while (this.breakTimer--) {
+      clearTimeout(this.breakTimer);
     }
     // reset buttons
     this.myStart = true;
