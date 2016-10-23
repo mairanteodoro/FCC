@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   sessionTimer:any;
   breakTimer:any;
   timer:any;
+  currentTime:string;
 
   ngOnInit() {
     this.myBreak = 5;
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit {
     this.myPause = false;
     this.sessionTimer = this.mySession;
     this.breakTimer = this.myBreak;
+    this.currentTime = this.mySession.toString();
   };
 
   // METHODS
@@ -47,24 +49,27 @@ export class AppComponent implements OnInit {
 
   startSession() {
     console.log("Started session");
+    // number of pomodoro sessions => 1 session = session + break
+    let numberOfSessions:number = 1;
     // 'root' object is set *by reference* to the global 'this' object
     let root = this;
     // creating a regular timer to clock the elapsed time
-    for (let i=0; i<=(4 * root.mySession + 3 * root.myBreak); i++) {
+    for (let i=0; i<=(numberOfSessions * (root.mySession + root.myBreak)); i++) {
       this.timer = setTimeout((function(x) {
         return function() {
+          root.currentTime = (root.mySession - x).toString();
           console.log("Timer: " + x.toString() + " s elapsed");
         }
       })(i), i * 1000);
     }
     // creating 4 pomodoro sessions
-    for (let i=1; i<=4; i++) {
+    for (let i=1; i<=numberOfSessions; i++) {
       // setting the session timeout
       this.sessionTimer = setTimeout((function(x) {
         // immediately invoke the outer function with passed argument
         // and return a callback function that 'remembers' its execution context
         return function() {
-          if (x===4) {
+          if (x===numberOfSessions) {
             // any change applied to 'root'
             // will also be applied to 'this'
             // ('root' is set by reference)
@@ -74,23 +79,23 @@ export class AppComponent implements OnInit {
             root.myPause = false;
             // sound it off
             root.beep();
+            console.log(" -> Session " + x.toString() + " finished.");
           } else {
-            console.log("root.mySession: ", i, root.mySession);
             console.log(" -> Session " + x.toString() + " finished.");
           };
         };
-      })(i), i * root.mySession * 1000);
+        // have to add the previous break interval into the next session
+      })(i), (i * root.mySession + (i - 1) * root.myBreak) * 1000);
       // setting the break timeout right after each session
-      if (i<=3) {
-        this.breakTimer = setTimeout((function(x) {
-          // immediately invoke the outer function with passed argument
-          // and return a callback function that 'remembers' its execution context
-          return function() {
-            console.log("root.myBreak: ", root.myBreak);
-            console.log(" -> Break from session " + x.toString() + " finished.");
-          };
-        })(i), i * root.mySession * 1000 + root.myBreak * 1000);
-      }
+      // if (i<=(numberOfSessions-1)) {
+      this.breakTimer = setTimeout((function(x) {
+        // immediately invoke the outer function with passed argument
+        // and return a callback function that 'remembers' its execution context
+        return function() {
+          console.log(" -> Break from session " + x.toString() + " finished.");
+        };
+      })(i), i * (root.mySession + root.myBreak) * 1000);
+      // }
     };
   };
 
