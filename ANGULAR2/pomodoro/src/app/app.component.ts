@@ -57,7 +57,11 @@ export class AppComponent implements OnInit {
     for (let i=0; i<=(numberOfSessions * (root.mySession + root.myBreak)); i++) {
       this.timer = setTimeout((function(x) {
         return function() {
-          root.currentTime = (root.mySession - x).toString();
+          if (x>root.mySession) {
+            root.currentTime = ((root.mySession + root.myBreak) - x).toString();
+          } else {
+            root.currentTime = (root.mySession - x).toString();
+          }
           console.log("Timer: " + x.toString() + " s elapsed");
         }
       })(i), i * 1000);
@@ -77,10 +81,12 @@ export class AppComponent implements OnInit {
             // reset buttons
             root.myStart = true;
             root.myPause = false;
+            // root.currentTime = (root.mySession - x).toString();
             // sound it off
             root.beep();
             console.log(" -> Session " + x.toString() + " finished.");
           } else {
+            // root.currentTime = (root.mySession - x).toString();
             console.log(" -> Session " + x.toString() + " finished.");
           };
         };
@@ -92,6 +98,7 @@ export class AppComponent implements OnInit {
         // immediately invoke the outer function with passed argument
         // and return a callback function that 'remembers' its execution context
         return function() {
+          // root.currentTime = (root.myBreak - x).toString();
           console.log(" -> Break from session " + x.toString() + " finished.");
         };
       })(i), i * (root.mySession + root.myBreak) * 1000);
@@ -115,6 +122,9 @@ export class AppComponent implements OnInit {
     // reset buttons
     this.myStart = true;
     this.myPause = false;
+    this.mySession = 25;
+    this.myBreak = 5;
+    this.currentTime = this.mySession.toString();
   }
 
   beep() {
