@@ -1,3 +1,6 @@
 // Place your settings in this file to overwrite default and user settings.
 {
+    "explorer.openEditors.visible": 0,
+    "terminal.external.osxExec": "iTerm.app",
+    "editor.cursorBlinking": "solid",
 }
