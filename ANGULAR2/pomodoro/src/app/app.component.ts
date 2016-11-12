@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
     this.myPause = false;
     this.sessionTimer = this.mySession;
     this.breakTimer = this.myBreak;
-    this.currentTime = this.mySession.toString();
+    this.currentTime = (this.mySession * 60).toString();
   };
 
   // METHODS
@@ -40,11 +40,13 @@ export class AppComponent implements OnInit {
   decreaseSession() {
     console.log("Decrease Session");
     this.mySession = this.mySession === 0 ? 0 : this.mySession - 1;
+    this.currentTime = (this.mySession * 60).toString();
   };
 
   increaseSession() {
     console.log("Increase Session");
     this.mySession = this.mySession === 60 ? 25 : this.mySession + 1;
+    this.currentTime = (this.mySession * 60).toString();
   };
 
   startSession() {
@@ -53,14 +55,16 @@ export class AppComponent implements OnInit {
     let numberOfSessions:number = 1;
     // 'root' object is set *by reference* to the global 'this' object
     let root = this;
+    let temp_mySession = root.mySession * 60;
+    let temp_myBreak = root.myBreak * 60;
     // creating a regular timer to clock the elapsed time
-    for (let i=0; i<=(numberOfSessions * (root.mySession + root.myBreak)); i++) {
+    for (let i=0; i<=(numberOfSessions * (temp_mySession + temp_myBreak)); i++) {
       this.timer = setTimeout((function(x) {
         return function() {
-          if (x>root.mySession) {
-            root.currentTime = ((root.mySession + root.myBreak) - x).toString();
+          if (x>temp_mySession) {
+            root.currentTime = ((temp_mySession + temp_myBreak) - x).toString();
           } else {
-            root.currentTime = (root.mySession - x).toString();
+            root.currentTime = (temp_mySession - x).toString();
           }
           console.log("Timer: " + x.toString() + " s elapsed");
         }
@@ -91,7 +95,7 @@ export class AppComponent implements OnInit {
           };
         };
         // have to add the previous break interval into the next session
-      })(i), (i * root.mySession + (i - 1) * root.myBreak) * 1000);
+      })(i), (i * temp_mySession + (i - 1) * temp_myBreak) * 1000);
       // setting the break timeout right after each session
       // if (i<=(numberOfSessions-1)) {
       this.breakTimer = setTimeout((function(x) {
@@ -101,7 +105,7 @@ export class AppComponent implements OnInit {
           // root.currentTime = (root.myBreak - x).toString();
           console.log(" -> Break from session " + x.toString() + " finished.");
         };
-      })(i), i * (root.mySession + root.myBreak) * 1000);
+      })(i), i * (temp_mySession + temp_myBreak) * 1000);
       // }
     };
   };
@@ -124,7 +128,7 @@ export class AppComponent implements OnInit {
     this.myPause = false;
     this.mySession = 25;
     this.myBreak = 5;
-    this.currentTime = this.mySession.toString();
+    this.currentTime = (this.mySession * 60).toString();
   }
 
   beep() {

@@ -8,10 +8,12 @@ import { MaterializeModule } from 'angular2-materialize';
 import "materialize-css";
 
 import { AppComponent } from './app.component';
+import { FormatTimerPipe } from './format-timer.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FormatTimerPipe
   ],
   imports: [
     BrowserModule,
