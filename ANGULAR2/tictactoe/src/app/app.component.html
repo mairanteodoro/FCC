@@ -1,11 +1,37 @@
-<div id="11" class="r1c1" (click)="onClick($event)"></div>
-<div id="12" class="r1c2" (click)="onClick($event)"></div>
-<div id="13" class="r1c3" (click)="onClick($event)"></div>
-<br>
-<div id="21" class="r2c1" (click)="onClick($event)"></div>
-<div id="22" class="r2c2" (click)="onClick($event)"></div>
-<div id="23" class="r2c3" (click)="onClick($event)"></div>
-<br>
-<div id="31" class="r3c1" (click)="onClick($event)"></div>
-<div id="32" class="r3c2" (click)="onClick($event)"></div>
-<div id="33" class="r3c3" (click)="onClick($event)"></div>
+<div class="container">
+
+  <div id="11" class="r1c1" (click)="onClick($event)">
+    <div class="center" *ngIf="targetId===11">{{myLabel}}</div>
+  </div>
+  <div id="12" class="r1c2" (click)="onClick($event)">
+    <div class="center" *ngIf="targetId===12">{{myLabel}}</div>
+  </div>
+  <div id="13" class="r1c3" (click)="onClick($event)">
+    <div class="center" *ngIf="targetId===13">{{myLabel}}</div>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <div id="21" class="r2c1" (click)="onClick($event)">
+    <div *ngIf="targetId===21">{{myLabel}}</div>
+  </div>
+  <div id="22" class="r2c2" (click)="onClick($event)">
+    <div *ngIf="targetId===22">{{myLabel}}</div>
+  </div>
+  <div id="23" class="r2c3" (click)="onClick($event)">
+    <div *ngIf="targetId===23">{{myLabel}}</div>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <div id="31" class="r3c1" (click)="onClick($event)">
+    <div *ngIf="targetId===31">{{myLabel}}</div>
+  </div>
+  <div id="32" class="r3c2" (click)="onClick($event)">
+    <div *ngIf="targetId===32">{{myLabel}}</div>
+  </div>
+  <div id="33" class="r3c3" (click)="onClick($event)">
+    <div *ngIf="targetId===33">{{myLabel}}</div>
+  </div>
+
+</div>

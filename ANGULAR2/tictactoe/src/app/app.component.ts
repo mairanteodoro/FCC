@@ -7,9 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  myLabel:string;
+  targetId:Number;
+
   onClick(event) {
-    // console.log(event);
+    console.log(event);
     console.log("Clicked " + event.target.id);
+    this.targetId = Number(event.target.id);
+    this.myLabel = event.target.id;
   }
 
 }

@@ -1,0 +1,73 @@
+// Variables
+$boxW: 150px;
+$boxH: $boxW;
+$spacing: 5px;
+$hoverColor: blue;
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  height: ($boxW + $spacing * 2) * 3;
+  width: ($boxW + $spacing * 2) * 3;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 20px;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.center {
+  display: block;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.box {
+  width: $boxW;
+  height: $boxH;
+  float: left;
+  margin: $spacing;
+  border-radius: 20px;
+  background-color: gray;
+  &:hover {
+    background-color: $hoverColor;
+  }
+}
+
+.r1c1 {
+  @extend .box;
+}
+.r1c2 {
+  @extend .box;
+}
+.r1c3 {
+  @extend .box;
+}
+
+.r2c1 {
+  @extend .box;
+}
+.r2c2 {
+  @extend .box;
+}
+.r2c3 {
+  @extend .box;
+}
+
+.r3c1 {
+  @extend .box;
+}
+.r3c2 {
+  @extend .box;
+}
+.r3c3 {
+  @extend .box;
+}
