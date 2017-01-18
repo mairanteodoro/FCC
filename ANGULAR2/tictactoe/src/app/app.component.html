@@ -1,37 +1,74 @@
 <div class="container">
 
-  <div id="11" class="r1c1" (click)="onClick($event)">
-    <div class="center" *ngIf="targetId===11">{{myLabel}}</div>
-  </div>
-  <div id="12" class="r1c2" (click)="onClick($event)">
-    <div class="center" *ngIf="targetId===12">{{myLabel}}</div>
-  </div>
-  <div id="13" class="r1c3" (click)="onClick($event)">
-    <div class="center" *ngIf="targetId===13">{{myLabel}}</div>
+  <div class="subContainer">
+
+    <div id="11" [ngClass]="{ 'r1c1': myArr.indexOf(11)===-1, 'circle': myArr.indexOf(11)!==-1 && myLabel[myArr.indexOf(11)]==='O', 'cross': myArr.indexOf(11)!==-1 && myLabel[myArr.indexOf(11)]==='X' }" (click)="onClick($event)">
+      <!-- <div class="center" *ngIf="myArr.indexOf(11)!==-1">{{myLabel[myArr.indexOf(11)]}}</div> -->
+    </div>
+    <div id="12" [ngClass]="{ 'r1c2': myArr.indexOf(12)===-1, 'circle': myArr.indexOf(12)!==-1 && myLabel[myArr.indexOf(12)]==='O', 'cross': myArr.indexOf(12)!==-1 && myLabel[myArr.indexOf(12)]==='X' }" (click)="onClick($event)">
+      <!-- <div class="center" *ngIf="myArr.indexOf(12)!==-1">{{myLabel[myArr.indexOf(12)]}}</div> -->
+    </div>
+    <div id="13" [ngClass]="{ 'r1c3': myArr.indexOf(13)===-1, 'circle': myArr.indexOf(13)!==-1 && myLabel[myArr.indexOf(13)]==='O', 'cross': myArr.indexOf(13)!==-1 && myLabel[myArr.indexOf(13)]==='X' }" (click)="onClick($event)">
+      <!-- <div class="center" *ngIf="myArr.indexOf(13)!==-1">{{myLabel[myArr.indexOf(13)]}}</div> -->
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div id="21" [ngClass]="{ 'r2c1': myArr.indexOf(21)===-1, 'circle': myArr.indexOf(21)!==-1 && myLabel[myArr.indexOf(21)]==='O', 'cross': myArr.indexOf(21)!==-1 && myLabel[myArr.indexOf(21)]==='X' }" (click)="onClick($event)">
+      <!-- <div class="center" *ngIf="myArr.indexOf(21)!==-1">{{myLabel[myArr.indexOf(21)]}}</div> -->
+    </div>
+    <div id="22" [ngClass]="{ 'r2c2': myArr.indexOf(22)===-1, 'circle': myArr.indexOf(22)!==-1 && myLabel[myArr.indexOf(22)]==='O', 'cross': myArr.indexOf(22)!==-1 && myLabel[myArr.indexOf(22)]==='X' }" (click)="onClick($event)">
+      <!-- <div class="center" *ngIf="myArr.indexOf(22)!==-1">{{myLabel[myArr.indexOf(22)]}}</div> -->
+    </div>
+    <div id="23" [ngClass]="{ 'r2c3': myArr.indexOf(23)===-1, 'circle': myArr.indexOf(23)!==-1 && myLabel[myArr.indexOf(23)]==='O', 'cross': myArr.indexOf(23)!==-1 && myLabel[myArr.indexOf(23)]==='X' }" (click)="onClick($event)">
+      <!-- <div class="center" *ngIf="myArr.indexOf(23)!==-1">{{myLabel[myArr.indexOf(23)]}}</div> -->
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div id="31" [ngClass]="{ 'r3c1': myArr.indexOf(31)===-1, 'circle': myArr.indexOf(31)!==-1 && myLabel[myArr.indexOf(31)]==='O', 'cross': myArr.indexOf(31)!==-1 && myLabel[myArr.indexOf(31)]==='X' }" (click)="onClick($event)">
+      <!-- <div class="center" *ngIf="myArr.indexOf(31)!==-1">{{myLabel[myArr.indexOf(31)]}}</div> -->
+    </div>
+    <div id="32" [ngClass]="{ 'r3c2': myArr.indexOf(32)===-1, 'circle': myArr.indexOf(32)!==-1 && myLabel[myArr.indexOf(32)]==='O', 'cross': myArr.indexOf(32)!==-1 && myLabel[myArr.indexOf(32)]==='X' }" (click)="onClick($event)">
+      <!-- <div class="center" *ngIf="myArr.indexOf(32)!==-1">{{myLabel[myArr.indexOf(32)]}}</div> -->
+    </div>
+    <div id="33" [ngClass]="{ 'r3c3': myArr.indexOf(33)===-1, 'circle': myArr.indexOf(33)!==-1 && myLabel[myArr.indexOf(33)]==='O', 'cross': myArr.indexOf(33)!==-1 && myLabel[myArr.indexOf(33)]==='X' }" (click)="onClick($event)">
+      <!-- <div class="center" *ngIf="myArr.indexOf(33)!==-1">{{myLabel[myArr.indexOf(33)]}}</div> -->
+    </div>
+
   </div>
 
-  <div class="clearfix"></div>
+</div>
 
-  <div id="21" class="r2c1" (click)="onClick($event)">
-    <div *ngIf="targetId===21">{{myLabel}}</div>
-  </div>
-  <div id="22" class="r2c2" (click)="onClick($event)">
-    <div *ngIf="targetId===22">{{myLabel}}</div>
-  </div>
-  <div id="23" class="r2c3" (click)="onClick($event)">
-    <div *ngIf="targetId===23">{{myLabel}}</div>
+<br>
+
+<div class="container">
+
+  <div class="row">
+
+    <button class="btn btn-primary col-xs-2 col-xs-offset-3 col-md-2 col-md-offset-3 col-lg-2 col-lg-offset-3" id="P1" (click)="scoreIncrement($event)">PRETTY GIRL</button>
+
+    <button class="btn btn-primary col-xs-2 col-xs-offset-2 col-md-2 col-md-offset-2 col-lg-2 col-lg-offset-2" id="P2" (click)="scoreIncrement($event)">XOXO</button>
+
+    <div class="clearfix"></div>
+
+    <div class="text-center col-xs-2 col-xs-offset-3 col-md-2 col-md-offset-3 col-lg-2 col-lg-offset-3">
+      <h1>{{scoreP1}}</h1>
+    </div>
+    <div class="text-center col-xs-2 col-xs-offset-2 col-md-2 col-md-offset-2 col-lg-2 col-lg-offset-2">
+      <h1>{{scoreP2}}</h1>
+    </div>
+
   </div>
 
-  <div class="clearfix"></div>
+  <br>
 
-  <div id="31" class="r3c1" (click)="onClick($event)">
-    <div *ngIf="targetId===31">{{myLabel}}</div>
+  <div class="row">
+    <button class="btn btn-success col-xs-4 col-xs-offset-4 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4" (click)="newGame()">New Game</button>
   </div>
-  <div id="32" class="r3c2" (click)="onClick($event)">
-    <div *ngIf="targetId===32">{{myLabel}}</div>
-  </div>
-  <div id="33" class="r3c3" (click)="onClick($event)">
-    <div *ngIf="targetId===33">{{myLabel}}</div>
+  <br>
+  <div class="row">
+    <button class="btn btn-danger col-xs-4 col-xs-offset-4 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4" (click)="reset()">Reset</button>
   </div>
 
 </div>

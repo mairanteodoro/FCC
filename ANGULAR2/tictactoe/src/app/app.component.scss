@@ -2,18 +2,30 @@
 $boxW: 150px;
 $boxH: $boxW;
 $spacing: 5px;
-$hoverColor: blue;
+$hoverColor: darkgrey;
 
 * {
   box-sizing: border-box;
 }
 
+button {
+  font-size: 2em;
+}
+button:focus {
+  outline: 0;
+}
+
 .container {
+  // border: 1px dashed black;
+}
+
+.subContainer {
   height: ($boxW + $spacing * 2) * 3;
-  width: ($boxW + $spacing * 2) * 3;
+  width: ($boxW + $spacing * 2) * 3.02;
+  min-width: ($boxW + $spacing * 2) * 3.02;
   margin: 0 auto;
   position: relative;
-  border-radius: 20px;
+  // border: 1px solid black;
 }
 
 .clearfix::after {
@@ -25,9 +37,8 @@ $hoverColor: blue;
 .center {
   display: block;
   position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 45%;
+  left: 45%;
 }
 
 .box {
@@ -40,6 +51,32 @@ $hoverColor: blue;
   &:hover {
     background-color: $hoverColor;
   }
+}
+
+.circle {
+  @extend .box;
+  border-radius: 50%!important;
+  background-color: blue!important;
+}
+.circle:after {
+  width: $boxW * 0.9;
+  height: $boxH * 0.9;
+  border-radius: 50%!important;
+}
+
+.cross {
+  @extend .box;
+  background-color: white!important;
+}
+.cross:after {
+    position: relative;
+    top: 20%;
+    left: 20%;
+    content: "\274c"; /* use the hex value here... */
+    font-size: 100px;
+    color: #FFF;
+    line-height: 100px;
+    text-align: center;
 }
 
 .r1c1 {
