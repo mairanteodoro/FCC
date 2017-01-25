@@ -14,6 +14,9 @@ export class AppComponent {
   toggle:boolean = true;
   scoreP1:number = 0;
   scoreP2:number = 0;
+  autoPlayState:boolean = false;
+  autoPlayStateString:string = 'Off';
+  player2Name:string = 'PLAYER 2';
 
   onClick(event) {
     // get the id
@@ -31,6 +34,7 @@ export class AppComponent {
     };
 
     console.log(this.myArr, this.toggle);
+    console.log(this.myArr.indexOf(11));
   };
 
   newGame() {
@@ -49,6 +53,12 @@ export class AppComponent {
 
   scoreIncrement(event) {
     event.target.id == "P1" ? this.scoreP1++ : this.scoreP2++;
+  }
+
+  activateAutoPlay() {
+    this.autoPlayState = !this.autoPlayState;
+    this.autoPlayStateString = this.autoPlayState ? 'On' : 'Off';
+    this.player2Name = this.autoPlayState ? 'COMPUTER' : 'PLAYER 2';
   }
 
 }

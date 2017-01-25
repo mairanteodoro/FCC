@@ -46,13 +46,10 @@ button:focus {
 
 .circle {
   border-radius: 50% !important;
-  background-color: blue !important;
-}
-
-.circle:after {
-  width: 135px;
-  height: 135px;
-  border-radius: 50% !important;
+  border-width: 20px;
+  border-color: blue !important;
+  border-style: solid !important;
+  background: white !important;
 }
 
 .cross {
@@ -62,10 +59,10 @@ button:focus {
 .cross:after {
   position: relative;
   top: 20%;
-  left: 20%;
+  left: 10%;
   content: "\274c";
   /* use the hex value here... */
-  font-size: 100px;
+  font-size: 120px;
   color: #FFF;
   line-height: 100px;
   text-align: center;
